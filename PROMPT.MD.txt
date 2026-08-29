@@ -1,0 +1,45 @@
+# Project Overview: Open-Source YouTube Metadata Automator
+
+**Role:** Act as an expert Node.js developer and open-source maintainer. Your task is to scaffold and write the core logic for a command-line tool (CLI) that automatically updates YouTube video titles and descriptions based on real-time metrics (e.g., view count).
+
+**Context:** This project is meant to be open-source. It must be modular, well-documented, and use best practices for environment variables and API rate limiting.
+
+## Tech Stack
+*   **Runtime:** Node.js
+*   **Libraries:** 
+    *   `googleapis` (for YouTube Data API v3)
+    *   `dotenv` (for secure credential management)
+    *   `node-cron` (optional, for scheduling updates)
+*   **Authentication:** OAuth2
+
+## Core Features Required
+1.  **OAuth2 Authentication Flow:** A script to generate an access/refresh token using a Google Cloud Desktop App credential.
+2.  **Metadata Fetcher:** A function that fetches the current statistics (views, likes, comments) of a specific YouTube Video ID.
+3.  **Title/Description Updater:** A function that takes a template string (e.g., "This video has {views} views!") and pushes the updated string to the YouTube API.
+4.  **Open Source Scaffolding:** A clean file structure ready for public GitHub release.
+
+## Step-by-Step Execution Plan
+
+Please generate the code and configuration files for the following steps:
+
+### Step 1: Project Scaffolding
+Generate the `package.json` with the required dependencies and start scripts. 
+Generate a `.gitignore` that strictly excludes `node_modules`, `.env`, and any local token storage files (like `tokens.json`).
+
+### Step 2: Authentication Module (`src/auth.js`)
+Write an OAuth2 client that reads `CLIENT_ID`, `CLIENT_SECRET`, and `REDIRECT_URI` from a `.env` file. It should handle generating an auth URL, trading a code for tokens, and saving the refresh token locally so the user only has to authenticate once.
+
+### Step 3: YouTube API Module (`src/youtube.js`)
+Write two main functions exported from this module:
+*   `getVideoStats(videoId)`: Returns an object with the current view count.
+*   `updateVideoMetadata(videoId, newTitle, newDescription)`: Sends the PUT request to update the video. Handle potential API errors gracefully.
+
+### Step 4: Main Execution Script (`index.js`)
+Tie it all together. Read a target `VIDEO_ID` and a `TITLE_TEMPLATE` from the `.env` file. Fetch the stats, replace the `{views}` placeholder in the template, and update the video. 
+
+### Step 5: Open-Source Documentation
+Generate a comprehensive `README.md` that explains:
+*   What the tool does.
+*   Prerequisites (Getting a Google Cloud API Key/OAuth client).
+*   Installation steps.
+*   How to configure the `.env` file.

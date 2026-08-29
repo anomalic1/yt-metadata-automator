@@ -1,0 +1,22 @@
+{
+  "name": "youtube-metadata-automator",
+  "version": "1.0.0",
+  "description": "Automatically updates YouTube video titles and descriptions based on real-time metrics (e.g., view count).",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "auth": "node src/auth.js"
+  },
+  "keywords": [
+    "youtube",
+    "api",
+    "automation",
+    "metadata"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "googleapis": "^140.0.0"
+  }
+}
